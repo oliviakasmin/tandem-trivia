@@ -26,6 +26,7 @@ cd tandem-trivia
 ### 3. Set up MongoDb locally.
 
 - in the `config.js` file, enter your personal Mongo credentials (you'll need to copy in your own `username`, `password`, and `mongo URI` which can all be found from your cloud account)
+- import the data file `Apprentice_TandemFor400_Data.json` saved in `server` into your mongo database in a collection called `trivias`
 
 ### 4. Start the project (you will need two terminals running simultaneously).
 
