@@ -1,28 +1,16 @@
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3000
-module.exports = app
 const { graphqlHTTP } = require('express-graphql')
 let cors = require('cors')
-const {
-  GraphQLString,
-  GraphQLSchema,
-  GraphQLList,
-  GraphQLObjectType,
-} = require('graphql')
-
-app.use(cors())
-
-// connect to mongodb database
+const { GraphQLSchema } = require('graphql')
+const RootQuery = require('./server/graphQL')
 let mongoose = require('mongoose')
 const URI = require('./config')
 
-const TriviaModel = mongoose.model('trivia', {
-  question: String,
-  incorrect: [String],
-  correct: String,
-})
+app.use(cors())
 
+// Connect to mongodb database
 mongoose.connect(process.env.MONGODB_URI || URI)
 
 mongoose
@@ -40,41 +28,23 @@ mongoose.connection.on('error', err => {
 })
 
 mongoose.connection.on('connected', () => {
-  console.log('Mongoose connection is running boo ya')
+  console.log('Mongoose connection is running')
 })
 
 mongoose.connection.on('disconnected', () => {
   console.log('Mongoose connection is disconnected')
 })
 
-const TriviaType = new GraphQLObjectType({
-  name: 'trivia',
-  fields: {
-    question: { type: GraphQLString },
-    incorrect: { type: GraphQLList(GraphQLString) },
-    correct: { type: GraphQLString },
-  },
-})
-
+// Connect to GraphQL
 const schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'Query',
-    fields: {
-      trivia: {
-        type: TriviaType,
-        resolve: async () => {
-          const data = await TriviaModel.find({})
-          console.log(data)
-          return data
-        },
-      },
-    },
-  }),
+  query: RootQuery,
 })
 
-app.use('/trivia', graphqlHTTP({ schema, graphiql: true }))
+app.use('/triviadata', graphqlHTTP({ schema, graphiql: true }))
 
-// Bootstrap server
+// Listen on Port
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}.`)
+  console.log(`GraphQL data served on port ${PORT}.`)
 })
+
+module.exports = app
