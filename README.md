@@ -19,7 +19,7 @@ cd tandem-trivia
 
 - `npm install`
 
-#### cd into client directory
+#### cd client
 
 - `npm install`
 
@@ -32,12 +32,12 @@ cd tandem-trivia
 #### in root directory
 
 - `npm start`
-- this will start our server on port 3001 where you can access the data on GraphiQL via `http://localhost:3001/triviadata`
+- this will start the server on port 3001 - you can access the data here: `http://localhost:3001/triviadata`
 
-#### in another terminal in client directory
+#### in another terminal, cd client
 
 - `npm start`
-- this will start the client side on port 3000 where you can interact the app `http://localhost:3000/`
+- this will start the client side on port 3000 - you can interact with the app here: `http://localhost:3000/`
 
 This project was created by Olivia Kasmin
 https://www.linkedin.com/in/olivia-kasmin/
