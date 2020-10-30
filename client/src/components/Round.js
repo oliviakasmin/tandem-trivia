@@ -1,4 +1,5 @@
 import React from 'react'
+import Answers from './Answers'
 import { Button } from 'react-bootstrap'
 
 const Round = props => {
@@ -11,7 +12,7 @@ const Round = props => {
         questions.map(question => (
           <div>
             <p>Question: {question.question}</p>
-            <ul>
+            {/* <ul>
               <li>correct answer: {question.correct}</li>
               <li>
                 incorrect answers:
@@ -19,10 +20,14 @@ const Round = props => {
                   <div>{answer}</div>
                 ))}
               </li>
-            </ul>
-            <Button variant='info' size='sm'>
-              I've chosen my answer
-            </Button>
+            </ul> */}
+
+            <Answers
+              correct={question.correct}
+              incorrect={question.incorrect}
+            />
+
+            <br />
           </div>
         ))
       ) : (
