@@ -40,5 +40,9 @@ cd tandem-trivia
 - `npm start`
 - this will start the client side on port 3000 - you can interact with the app here: `http://localhost:3000/`
 
+### play the game!
+
+_note: if you refresh the page this will generate a new game_
+
 This project was created by Olivia Kasmin
 https://www.linkedin.com/in/olivia-kasmin/

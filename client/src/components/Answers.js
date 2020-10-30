@@ -7,7 +7,6 @@ const Answers = props => {
   const allAnswers = [{ correct }, ...incorrect]
   return (
     <div>
-      <p>Answers:</p>
       {allAnswers.length ? (
         util_answers(allAnswers).map(answer => (
           <ul>
