@@ -1,11 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './App'
 import reportWebVitals from './reportWebVitals'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
-import GraphQLData from './components/GraphQLData'
+import { Game } from './components'
 
 const client = new ApolloClient({
   uri: 'http://localhost:3001/triviadata',
@@ -14,9 +13,8 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     {/* <React.StrictMode> */}
-    {/* <App /> */}
     {/* </React.StrictMode>, */}
-    <GraphQLData />
+    <Game />
   </ApolloProvider>,
 
   document.getElementById('root')
