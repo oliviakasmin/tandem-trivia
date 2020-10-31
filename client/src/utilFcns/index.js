@@ -11,10 +11,22 @@ const util_randomNums = max => {
 }
 
 // shuffle our answers so they appear in a random order
-const util_answers = answers => {
+const util_answers_shuffle = answers => {
   let randomNumbers = util_randomNums(answers.length)
   const answersArr = randomNumbers.map(idx => answers[idx])
   return answersArr
+}
+
+const util_answers = (correct, incorrect) => {
+  const incorrectObjs = incorrect.map(answer => ({
+    answerText: answer,
+    isCorrect: false,
+  }))
+  const allAnswers = [
+    { answerText: correct, isCorrect: true },
+    ...incorrectObjs,
+  ]
+  return util_answers_shuffle(allAnswers)
 }
 
 // create rounds by assigning 10 randomly chosen questions to each round
@@ -31,4 +43,4 @@ const util_create_rounds = questionsData => {
   return allRounds
 }
 
-module.exports = { util_create_rounds, util_answers }
+module.exports = { util_create_rounds, util_answers_shuffle, util_answers }

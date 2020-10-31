@@ -1,30 +1,44 @@
-import React from 'react'
-import { util_answers } from '../utilFcns'
-import { Button, Form } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { util_answers_shuffle } from '../utilFcns'
+import { Button, ToggleButton, ButtonGroup } from 'react-bootstrap'
 
 const Answers = props => {
-  const { correct, incorrect } = props
-  const allAnswers = [{ correct }, ...incorrect]
+  //   const [score, setScore] = useState(0)
+  const { correct, incorrect, score, setScore } = props
+  const incorrectObjs = incorrect.map(answer => ({
+    answerText: answer,
+    isCorrect: false,
+  }))
+  const allAnswers = [
+    { answerText: correct, isCorrect: true },
+    ...incorrectObjs,
+  ]
+  const handleAnswerClick = isCorrect => {
+    console.log(isCorrect)
+    console.log('score pre-click', score)
+    if (isCorrect) {
+      setScore(score + 1)
+    }
+    console.log('score post-click', score)
+  }
   return (
     <div>
-      <Form>
-        {allAnswers.length ? (
-          util_answers(allAnswers).map(answer => (
-            <Form.Group>
-              {typeof answer === 'string' ? (
-                <Form.Check type='radio'> {answer}</Form.Check>
-              ) : (
-                <Form.Check type='radio'>{answer.correct}</Form.Check>
-              )}
-            </Form.Group>
-          ))
-        ) : (
-          <div>no rounds yet</div>
-        )}
-        <Button variant='info' size='sm' type='submit'>
-          I've chosen my answer
-        </Button>
-      </Form>
+      {allAnswers.length ? (
+        util_answers_shuffle(allAnswers).map(answer => (
+          <ButtonGroup>
+            <ToggleButton
+              type='radio'
+              variant='info'
+              onClick={() => {
+                handleAnswerClick(answer.isCorrect)
+              }}>
+              {answer.answerText}
+            </ToggleButton>
+          </ButtonGroup>
+        ))
+      ) : (
+        <div>no answers yet</div>
+      )}
       <br />
       <br />
       <Button variant='warning' size='sm'>
