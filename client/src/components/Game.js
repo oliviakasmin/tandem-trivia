@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import { util_create_rounds } from '../utilFcns'
 import Round from './Round'
-import { Container } from 'react-bootstrap'
+import { Container, Form } from 'react-bootstrap'
 
 const GET_TRIVIA_DATA = gql`
   {
@@ -18,7 +18,6 @@ const GET_TRIVIA_DATA = gql`
 const Game = props => {
   const gameData = props.data.game
   const rounds = !gameData ? '' : util_create_rounds(gameData)
-  console.log(rounds[0])
   return (
     <Container>
       <h1>Trivia Rounds</h1>
