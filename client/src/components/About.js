@@ -8,20 +8,31 @@ const About = () => {
       <h2>about</h2>
       <p>
         I built this trivia game as a code challenge. The goal of the app is to
-        create a platform for people to level up their trivia skills as a fun
-        little break. Each round consists of 10 questions with multiple choice
-        answers, and questions may not be repeated in a round. I hope you have
-        fun exploring the app!
+        create a platform for users to level up their trivia skills as a fun
+        little break from work. Each round consists of 10 questions with
+        multiple choice answers, and questions may not be repeated in a round. I
+        hope you have fun exploring the app!
       </p>
       <br />
       <h5>technologies used</h5>
+      <div>
+        Developed using Javascript and Node.js, in addition to the below
+        libraries and technologies.
+      </div>
+      <br />
       <div>back-end</div>
       <ul>
-        <li>mongo</li>
+        <li>MongoDb</li>
+        <li>Mongoose</li>
+        <li>Express</li>
+        <li>GraphQL</li>
       </ul>
       <div>front-end</div>
       <ul>
-        <li>bootstraped using create react app</li>
+        <li>Bootstraped using Create React App</li>
+        <li>React</li>
+        <li>React Bootstrap</li>
+        <li>Apollo</li>
       </ul>
       <br />
       <h5>future features and improvements</h5>
@@ -43,6 +54,8 @@ const About = () => {
       </p>
       <p>A script to seed the database.</p>
       <p>Deploy the site.</p>
+      <br />
+      <br />
     </Container>
   )
 }
