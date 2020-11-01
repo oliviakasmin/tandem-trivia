@@ -58,5 +58,6 @@ A script to seed the database.
 
 Deploy the site.
 
-This project was created by Olivia Kasmin
-https://www.linkedin.com/in/olivia-kasmin/
+##### This project was created by Olivia Kasmin
+
+https://www.oliviakasmin.com/
