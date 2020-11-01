@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'react-apollo'
 import { gql } from 'apollo-boost'
 import { util_create_rounds } from '../utilFcns'
 import Round from './Round'
-import { Container, Form } from 'react-bootstrap'
+import { Container, Button } from 'react-bootstrap'
 
 const GET_TRIVIA_DATA = gql`
   {
@@ -14,20 +14,33 @@ const GET_TRIVIA_DATA = gql`
     }
   }
 `
+// need to move currentRound and render of Round into Round component
+// so can increase increase the current round if want to play again
+
+// if current round === 0, then show button "let's play! which will render <Round>"
+// if current round > 0 (but less than total), then show button "play another round",
+// which will increase the current round count and then render <Round>
+// if current round > length of rounds array -1, then show Alert "you've played all of the rounds!"
+
+// set up Routes so can have 'Home' 'Play' and 'About' pages
+// on Home will have quick intro and big link to 'Play'
+// hamburger menu UR to toggle between
+// make Navbar
 
 const Game = props => {
+  const [currentRound, setCurrentRound] = useState(0)
+  const [showRound, setShowRound] = useState(false)
   const gameData = props.data.game
   const rounds = !gameData ? '' : util_create_rounds(gameData)
+  const handleFirstPlay = event => {
+    event.preventDefault()
+    setShowRound(true)
+  }
   return (
     <Container>
-      <h1>Trivia Rounds</h1>
-      {rounds[0] ? (
-        rounds.map((round, idx) => {
-          return <Round questions={round} idx={idx} />
-        })
-      ) : (
-        <div>no rounds yet</div>
-      )}
+      <h1>Trivia</h1>
+      {!showRound ? <Button onClick={handleFirstPlay}>play round</Button> : ''}
+      {showRound && rounds[0] ? <Round questions={rounds[0]} idx={0} /> : ''}
     </Container>
   )
 }
