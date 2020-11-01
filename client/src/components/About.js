@@ -15,10 +15,7 @@ const About = () => {
       </p>
       <br />
       <h5>technologies used</h5>
-      <div>
-        Developed using Javascript and Node.js, in addition to the below
-        libraries and technologies.
-      </div>
+      <div>Developed using Javascript and Node.js as well as the below:</div>
       <br />
       <div>back-end</div>
       <ul>
