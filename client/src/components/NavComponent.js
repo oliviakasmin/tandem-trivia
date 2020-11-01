@@ -7,7 +7,7 @@ const NavComponent = () => {
       <Navbar.Brand href='/'>trivia!</Navbar.Brand>
       <Nav>
         <Nav.Link href='/' className='nav-link'>
-          play
+          home
         </Nav.Link>
         <Nav.Link href='/about' className='nav-link'>
           about

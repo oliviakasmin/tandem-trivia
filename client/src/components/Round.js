@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, ToggleButton, ButtonGroup, Alert } from 'react-bootstrap'
+import { Button, ToggleButton, Alert, Container } from 'react-bootstrap'
 import { util_answers } from '../utilFcns'
 
 const Round = props => {
@@ -11,6 +11,7 @@ const Round = props => {
   const [showWrong, setShowWrong] = useState(false)
   const [showAnswers, setShowAnswers] = useState(true)
   const [showQuestion, setShowQuestions] = useState(true)
+  const [finishedRounds, setFinishedRounds] = useState(false)
 
   const handleAnswerClick = isCorrect => {
     setShowAnswers(false)
@@ -39,16 +40,21 @@ const Round = props => {
   // or add another state alerting to the fact that you've finished questions and return home
   const handlePlayNext = event => {
     event.preventDefault()
-    if (currentRound < rounds.length - 1) setCurrentRound(currentRound + 1)
-    setShowQuestions(true)
-    setCurrentQuestion(0)
-    setShow(false)
-    setShowWrong(false)
-    setShowAnswers(true)
+    if (currentRound < rounds.length - 1) {
+      setCurrentRound(currentRound + 1)
+      setShowQuestions(true)
+      setCurrentQuestion(0)
+      setShow(false)
+      setShowWrong(false)
+      setShowAnswers(true)
+    } else {
+      setFinishedRounds(true)
+    }
   }
   return (
     <div>
-      <h2>Round {currentRound + 1}</h2>
+      {!finishedRounds ? <h2>Round {currentRound + 1}</h2> : ''}
+      <br />
       {showQuestion && rounds[currentRound][currentQuestion].question ? (
         <div>
           <h5>
@@ -63,7 +69,7 @@ const Round = props => {
           ) : (
             ''
           )}
-          <Alert show={show} variant='success'>
+          <Alert show={show} variant='warning'>
             correct!
           </Alert>
           <Alert show={showWrong} variant='secondary'>
@@ -90,14 +96,26 @@ const Round = props => {
       ) : (
         ''
       )}
-      {!showQuestion ? (
+      {!showQuestion && !finishedRounds ? (
         <div>
-          {' '}
-          <h5>you scored {score} point(s) this round!</h5> <br />
-          <Button variant='success' onClick={handlePlayNext}>
+          <h5>you scored {score} point(s) this round</h5> <br />
+          <Button variant='info' onClick={handlePlayNext}>
             play next round!
           </Button>
-          <Button variant='warning'>i'm done training for now</Button>{' '}
+        </div>
+      ) : (
+        ''
+      )}
+      {finishedRounds ? (
+        <div>
+          <h5>
+            you've played all of the rounds! navigate back to the home page to
+            play again
+          </h5>
+          <br />
+          <a href='/'>
+            <Button variant='outline-dark'>home</Button>
+          </a>
         </div>
       ) : (
         ''
@@ -109,20 +127,23 @@ const Round = props => {
 const Answer = props => {
   const { question, handleAnswerClick } = props
   return (
-    <div>
+    <Container className='answers'>
       {util_answers(question.correct, question.incorrect).map(answer => (
-        <ButtonGroup>
+        <div>
           <ToggleButton
             type='radio'
-            variant='info'
+            variant='outline-dark'
+            className='answerButton'
             onClick={() => {
               handleAnswerClick(answer.isCorrect)
             }}>
+            {' '}
             {answer.answerText}
           </ToggleButton>
-        </ButtonGroup>
+          <br />
+        </div>
       ))}
-    </div>
+    </Container>
   )
 }
 

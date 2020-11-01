@@ -16,18 +16,15 @@ const GET_TRIVIA_DATA = gql`
   }
 `
 
-// set up Routes so can have 'Home' 'Play' and 'About' pages
-// on Home will have quick intro and big link to 'Play'
-// hamburger menu UR to toggle between
-// make Navbar
-
 const Game = props => {
   const [showRound, setShowRound] = useState(false)
   const [getRounds, setGetRounds] = useState([])
+  const [showIntro, setShowIntro] = useState(true)
   const gameData = props.data.game
 
   const handleFirstPlay = event => {
     event.preventDefault()
+    setShowIntro(false)
     setShowRound(true)
     const rounds = !gameData ? '' : util_create_rounds(gameData)
     setGetRounds(rounds)
@@ -35,6 +32,19 @@ const Game = props => {
   return (
     <Container>
       <br />
+      {showIntro ? (
+        <div>
+          <h4>welcome to my trivia training game</h4>
+          <br />
+          <p>
+            each time you play (or refresh the page) the questions and answers
+            will all be shuffled to keep you on your toes
+          </p>
+          <br />
+        </div>
+      ) : (
+        ''
+      )}
       {!showRound ? (
         <Button size='lg' variant='outline-dark' onClick={handleFirstPlay}>
           let's play
