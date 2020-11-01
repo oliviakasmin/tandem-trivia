@@ -71,7 +71,7 @@ const Round = props => {
             {rounds[currentRound][currentQuestion].correct}
           </Alert>
           {!showAnswers & (currentQuestion < 9) ? (
-            <Button variant='warning' onClick={handleNextQuestion}>
+            <Button variant='outline-dark' onClick={handleNextQuestion}>
               next question
             </Button>
           ) : (
@@ -93,7 +93,7 @@ const Round = props => {
       {!showQuestion ? (
         <div>
           {' '}
-          <h5>you scored {score} points this round!</h5> <br />
+          <h5>you scored {score} point(s) this round!</h5> <br />
           <Button variant='success' onClick={handlePlayNext}>
             play next round!
           </Button>

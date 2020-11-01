@@ -34,8 +34,14 @@ const Game = props => {
   }
   return (
     <Container>
-      <h1>Trivia</h1>
-      {!showRound ? <Button onClick={handleFirstPlay}>play round</Button> : ''}
+      <br />
+      {!showRound ? (
+        <Button size='lg' variant='outline-dark' onClick={handleFirstPlay}>
+          let's play
+        </Button>
+      ) : (
+        ''
+      )}
       {showRound && getRounds[0] ? <Round rounds={getRounds} /> : ''}
     </Container>
   )

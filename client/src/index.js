@@ -4,7 +4,7 @@ import './index.css'
 import reportWebVitals from './reportWebVitals'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
-import { Game } from './components'
+import { Game, Routes, NavComponent } from './components'
 
 const client = new ApolloClient({
   uri: 'http://localhost:3001/triviadata',
@@ -14,7 +14,9 @@ ReactDOM.render(
   <ApolloProvider client={client}>
     {/* <React.StrictMode> */}
     {/* </React.StrictMode>, */}
-    <Game />
+    {/* <Game /> */}
+    <NavComponent />
+    <Routes />
   </ApolloProvider>,
 
   document.getElementById('root')
