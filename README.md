@@ -6,7 +6,7 @@ Welcome to my trivia code challenge! I hope you have fun and level-up your skill
 
 ## Installation
 
-_note: to run this app on from code editor, you'll need Javascript, Node.js, and MongoDb installed (more database info below)_
+_note: to run this app on your code editor, you'll need Javascript, Node.js, and MongoDb installed (more database info below)_
 
 ### 1. Clone or download this repository.
 
