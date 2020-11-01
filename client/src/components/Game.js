@@ -30,17 +30,24 @@ const GET_TRIVIA_DATA = gql`
 const Game = props => {
   const [currentRound, setCurrentRound] = useState(0)
   const [showRound, setShowRound] = useState(false)
+  const [getRounds, setGetRounds] = useState([])
   const gameData = props.data.game
-  const rounds = !gameData ? '' : util_create_rounds(gameData)
+
   const handleFirstPlay = event => {
     event.preventDefault()
     setShowRound(true)
+    const rounds = !gameData ? '' : util_create_rounds(gameData)
+    setGetRounds(rounds)
   }
   return (
     <Container>
       <h1>Trivia</h1>
       {!showRound ? <Button onClick={handleFirstPlay}>play round</Button> : ''}
-      {showRound && rounds[0] ? <Round questions={rounds[0]} idx={0} /> : ''}
+      {showRound && getRounds[0] ? (
+        <Round questions={getRounds[0]} idx={0} rounds={getRounds} />
+      ) : (
+        ''
+      )}
     </Container>
   )
 }

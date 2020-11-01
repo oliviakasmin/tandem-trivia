@@ -3,7 +3,8 @@ import { Button, ToggleButton, ButtonGroup, Alert } from 'react-bootstrap'
 import { util_answers } from '../utilFcns'
 
 const Round = props => {
-  const { questions, idx } = props
+  const { rounds } = props
+  const [currentRound, setCurrentRound] = useState(0)
   const [score, setScore] = useState(0)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [show, setShow] = useState(false)
@@ -33,18 +34,28 @@ const Round = props => {
     event.preventDefault()
     setShowQuestions(false)
   }
+  const handlePlayNext = event => {
+    event.preventDefault()
+    if (currentRound < rounds.length - 1) setCurrentRound(currentRound + 1)
+    setShowQuestions(true)
+    setCurrentQuestion(0)
+    setShow(false)
+    setShowWrong(false)
+    setShowAnswers(true)
+  }
+  // let questions = rounds[currentRound]
   return (
     <div>
-      <h2>Round {idx + 1}</h2>
-      {showQuestion && questions[currentQuestion].question ? (
+      <h2>Round {currentRound + 1}</h2>
+      {showQuestion && rounds[currentRound][currentQuestion].question ? (
         <div>
           <h5>
             Question {currentQuestion + 1}/10:{' '}
-            {questions[currentQuestion].question}
+            {rounds[currentRound][currentQuestion].question}
           </h5>
           {showAnswers ? (
             <Answer
-              question={questions[currentQuestion]}
+              question={rounds[currentRound][currentQuestion]}
               handleAnswerClick={handleAnswerClick}
             />
           ) : (
@@ -54,7 +65,8 @@ const Round = props => {
             correct!
           </Alert>
           <Alert show={showWrong} variant='secondary'>
-            Oops! the correct answer is: {questions[currentQuestion].correct}
+            Oops! the correct answer is:{' '}
+            {rounds[currentRound][currentQuestion].correct}
           </Alert>
           {!showAnswers & (currentQuestion < 9) ? (
             <Button variant='warning' onClick={handleNextQuestion}>
@@ -76,7 +88,18 @@ const Round = props => {
       ) : (
         ''
       )}
-      {!showQuestion ? <h5>you scored {score} points this round!</h5> : ''}
+      {!showQuestion ? (
+        <div>
+          {' '}
+          <h5>you scored {score} points this round!</h5> <br />
+          <Button variant='success' onClick={handlePlayNext}>
+            play next round!
+          </Button>
+          <Button variant='warning'>i'm done training for now</Button>{' '}
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   )
 }
