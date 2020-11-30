@@ -47,6 +47,7 @@ const Round = props => {
       setShow(false)
       setShowWrong(false)
       setShowAnswers(true)
+      setScore(0)
     } else {
       setFinishedRounds(true)
     }
