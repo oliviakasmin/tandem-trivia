@@ -40,15 +40,36 @@ const schema = new GraphQLSchema({
   query: RootQuery,
 })
 
+// app.use('/triviadata', graphqlHTTP({ schema, graphiql: true }))
+
+app.use('/api', require('./server/api'))
+
+// app.use(express.static(path.join(__dirname, './client/build')))
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
 }
 
-app.use('/triviadata', graphqlHTTP({ schema, graphiql: true }))
+app.use('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './client/build/index.html'))
+})
+
+app.use((req, res, next) => {
+  if (path.extname(req.path).length) {
+    const err = new Error('Not found')
+    err.status = 404
+    next(err)
+  } else {
+    next()
+  }
+})
+
+app.use((err, req, res, next) => {
+  console.error(err)
+  console.error(err.stack)
+  res.status(err.status || 500).send(err.message || 'Internal server error.')
+})
 
 // Listen on Port
-app.listen(PORT, () => {
-  console.log(`GraphQL data served on port ${PORT}.`)
-})
+app.listen(PORT, () => console.log(`🐕 Doggo says let's go to port ${PORT}`))
 
 module.exports = app
