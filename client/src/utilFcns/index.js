@@ -1,5 +1,5 @@
 // returns a function of unique randomized numbers
-const util_randomNums = max => {
+export const util_randomNums = max => {
   let randomNumbers = []
   while (randomNumbers.length < max) {
     let num = Math.floor(Math.random() * Math.floor(max))
@@ -11,13 +11,13 @@ const util_randomNums = max => {
 }
 
 // shuffle our answers so they appear in a random order
-const util_answers_shuffle = answers => {
+export const util_answers_shuffle = answers => {
   let randomNumbers = util_randomNums(answers.length)
   const answersArr = randomNumbers.map(idx => answers[idx])
   return answersArr
 }
 
-const util_answers = (correct, incorrect) => {
+export const util_answers = (correct, incorrect) => {
   const incorrectObjs = incorrect.map(answer => ({
     answerText: answer,
     isCorrect: false,
@@ -31,7 +31,7 @@ const util_answers = (correct, incorrect) => {
 
 // create rounds by assigning 10 randomly chosen questions to each round
 // return an array that contains arrays of 10 questions
-const util_create_rounds = questionsData => {
+export const util_create_rounds = questionsData => {
   const rounds = Math.floor(questionsData.length / 10)
   let randomNumbers = util_randomNums(rounds * 10)
   const roundsArr = randomNumbers.map(idx => questionsData[idx])
@@ -43,4 +43,4 @@ const util_create_rounds = questionsData => {
   return allRounds
 }
 
-module.exports = { util_create_rounds, util_answers_shuffle, util_answers }
+// module.exports = { util_create_rounds, util_answers_shuffle, util_answers }
