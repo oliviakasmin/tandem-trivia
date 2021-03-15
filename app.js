@@ -40,6 +40,10 @@ const schema = new GraphQLSchema({
   query: RootQuery,
 })
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'))
+}
+
 app.use('/triviadata', graphqlHTTP({ schema, graphiql: true }))
 
 // Listen on Port
