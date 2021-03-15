@@ -3,17 +3,26 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
-import { Routes, NavComponent } from './components'
+import { Routes, NavComponent, Game, About, NotFound } from './components'
+import {
+  Route,
+  BrowserRouter as Router,
+  Redirect,
+  Switch,
+} from 'react-router-dom'
 
-const client = new ApolloClient({
-  uri: 'http://localhost:3001/triviadata',
-})
+// const client = new ApolloClient({
+//   uri: 'http://localhost:3001/triviadata',
+// })
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  // <ApolloProvider client={client}>
+  <Router>
     <NavComponent />
     <Routes />
-  </ApolloProvider>,
+  </Router>,
+
+  // </ApolloProvider>,
 
   document.getElementById('root')
 )

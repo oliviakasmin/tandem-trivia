@@ -66,6 +66,7 @@ const Round = props => {
             <Answer
               question={rounds[currentRound][currentQuestion]}
               handleAnswerClick={handleAnswerClick}
+              key={`${currentQuestion} ${currentRound}`}
             />
           ) : (
             ''

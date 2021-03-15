@@ -4,14 +4,13 @@ import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom'
 
 const Routes = () => {
   return (
-    <BrowserRouter>
+    <div>
       <Switch>
         <Route exact path='/about' component={About} />
         <Route exact path='/' component={Game} />
-        {/* <Route path='/404' component={NotFound} />
-        <Redirect from='/*' to='/404' /> */}
+        <Route component={NotFound} />
       </Switch>
-    </BrowserRouter>
+    </div>
   )
 }
 

@@ -1,11 +1,16 @@
 import React from 'react'
+import { Button, Container } from 'react-bootstrap'
 
 const NotFound = () => {
   return (
-    <div>
+    <Container>
+      <br />
       <h5>oops, seems you've navigated to a page doesn't exist! </h5>
-      <div>back to main page button</div>
-    </div>
+      <br />
+      <a href='/'>
+        <Button variant='outline-dark'>home</Button>
+      </a>
+    </Container>
   )
 }
 
