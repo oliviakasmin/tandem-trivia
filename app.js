@@ -7,6 +7,7 @@ const { GraphQLSchema } = require('graphql')
 const RootQuery = require('./server/graphQL')
 let mongoose = require('mongoose')
 const URI = require('./config')
+const path = require('path')
 
 app.use(cors())
 
@@ -44,10 +45,10 @@ const schema = new GraphQLSchema({
 
 app.use('/api', require('./server/api'))
 
-// app.use(express.static(path.join(__dirname, './client/build')))
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'))
-}
+app.use(express.static(path.join(__dirname, './client/build')))
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/build'))
+// }
 
 app.use('*', (req, res) => {
   res.sendFile(path.join(__dirname, './client/build/index.html'))
