@@ -38,7 +38,11 @@ const Game = props => {
     event.preventDefault()
     setShowIntro(false)
     setShowRound(true)
-    const rounds = !gameData ? '' : util_create_rounds(gameData)
+    const rounds = !gameData ? (
+      <p>no questions at this time</p>
+    ) : (
+      util_create_rounds(gameData)
+    )
     setGetRounds(rounds)
   }
   return (
