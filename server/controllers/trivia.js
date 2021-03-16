@@ -10,4 +10,14 @@ module.exports = {
       next(err)
     }
   },
+  // this doesn't work
+  addNew: async (req, res, next) => {
+    try {
+      const newQuestion = new TriviaModel(req.body)
+      await newQuestion.save()
+      res.json(newQuestion)
+    } catch (err) {
+      next(err)
+    }
+  },
 }
