@@ -1,29 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { graphql } from 'react-apollo'
-import { gql } from 'apollo-boost'
 import { util_create_rounds } from '../utilFcns'
 import Round from './Round'
 import { Container, Button } from 'react-bootstrap'
-import { assertValidExecutionArguments } from 'graphql/execution/execute'
 import axios from 'axios'
 
-// get trivia data from graphQL
-// const GET_TRIVIA_DATA = gql`
-//   {
-//     game {
-//       question
-//       correct
-//       incorrect
-//     }
-//   }
-// `
-
-const Game = props => {
+const Game = () => {
   const [showRound, setShowRound] = useState(false)
   const [getRounds, setGetRounds] = useState([])
   const [showIntro, setShowIntro] = useState(true)
   const [gameData, setGameData] = useState([])
-  // const gameData = props.data.game
 
   useEffect(() => {
     getQuestions()
@@ -72,8 +57,5 @@ const Game = props => {
     </Container>
   )
 }
-
-// connect graphQL queried data with Game component
-// export default graphql(GET_TRIVIA_DATA)(Game)
 
 export default Game

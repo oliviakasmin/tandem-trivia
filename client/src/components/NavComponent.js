@@ -1,4 +1,4 @@
-import React, { Container } from 'react'
+import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 
 const NavComponent = () => {
@@ -11,6 +11,11 @@ const NavComponent = () => {
         </Nav.Link>
         <Nav.Link href='/about' className='nav-link'>
           about
+        </Nav.Link>
+        <Nav.Link
+          href='https://trivia-train.herokuapp.com/'
+          className='nav-link'>
+          deployed site
         </Nav.Link>
       </Nav>
     </Navbar>

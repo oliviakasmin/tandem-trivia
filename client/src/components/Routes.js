@@ -1,6 +1,6 @@
 import React from 'react'
 import { Game, About, NotFound } from './index.js'
-import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 const Routes = () => {
   return (

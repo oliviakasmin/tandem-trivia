@@ -1,10 +1,7 @@
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3001
-const { graphqlHTTP } = require('express-graphql')
 let cors = require('cors')
-const { GraphQLSchema } = require('graphql')
-const RootQuery = require('./server/graphQL')
 let mongoose = require('mongoose')
 const URI = require('./config')
 const path = require('path')
@@ -12,8 +9,6 @@ const path = require('path')
 app.use(cors())
 
 // Connect to mongodb database
-mongoose.connect(process.env.MONGODB_URI || URI)
-
 mongoose
   .connect(process.env.MONGODB_URI || URI, {
     useNewUrlParser: true,
@@ -24,35 +19,31 @@ mongoose
 
 mongoose.connection.on('error', err => {
   console.error(
-    `something is not working with the mongoose db connection :( ${err.message})`
+    `something is not working with the mongo db connection :( ${err.message})`
   )
 })
 
 mongoose.connection.on('connected', () => {
-  console.log('Mongoose connection is running')
+  console.log('🐕 Mongo connection is running')
 })
 
 mongoose.connection.on('disconnected', () => {
-  console.log('Mongoose connection is disconnected')
+  console.log('Mongo connection is disconnected')
 })
 
-// Connect to GraphQL
-const schema = new GraphQLSchema({
-  query: RootQuery,
-})
-
-// app.use('/triviadata', graphqlHTTP({ schema, graphiql: true }))
+// connect to our api routes
 
 app.use('/api', require('./server/api'))
 
+// serve static files
+
 app.use(express.static(path.join(__dirname, './client/build')))
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('client/build'))
-// }
 
 app.use('*', (req, res) => {
   res.sendFile(path.join(__dirname, './client/build/index.html'))
 })
+
+// error handling
 
 app.use((req, res, next) => {
   if (path.extname(req.path).length) {
@@ -71,6 +62,6 @@ app.use((err, req, res, next) => {
 })
 
 // Listen on Port
-app.listen(PORT, () => console.log(`🐕 Doggo says let's go to port ${PORT}`))
+app.listen(PORT, () => console.log(`🐕 server running on port ${PORT}`))
 
 module.exports = app

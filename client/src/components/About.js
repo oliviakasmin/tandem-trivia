@@ -22,24 +22,23 @@ const About = () => {
         <li>MongoDb</li>
         <li>Mongoose</li>
         <li>Express</li>
-        <li>GraphQL</li>
       </ul>
       <div>front-end</div>
       <ul>
         <li>Bootstraped using Create React App</li>
         <li>React</li>
         <li>React Bootstrap</li>
-        <li>Apollo</li>
+        <li>Axios</li>
       </ul>
       <br />
       <h5>future features and improvements</h5>
       <p>
-        I'd love to add a GraphQL mutation to add data so that users may
-        contribute new questions. The built out back-end is not entirely
-        necessary for the current scope of app, but it was a lot of fun to build
-        and now there is a framework in place should the app evolve and become
-        more expansive. The logic on the front-end is already equipped to handle
-        additional questions and subsequent trivia rounds.
+        The built out back-end is not entirely necessary for the current scope
+        of app, but it was a lot of fun to build and now there is a framework in
+        place should the app evolve and become more expansive, such as the
+        option for the player to add additional trivia questions. The logic on
+        the front-end is already equipped to handle additional questions and
+        subsequent trivia rounds.
       </p>
       <p>
         Unit tests to check features, such as: 10 unique questions per round,
@@ -49,8 +48,7 @@ const About = () => {
       <p>
         A more fleshed out UX/UI! As a start, I aimed for simple and navigable.
       </p>
-      <p>A script to seed the database.</p>
-      <p>Deploy the site.</p>
+      <p>A script to seed the database with additional data.</p>
       <br />
       <br />
     </Container>

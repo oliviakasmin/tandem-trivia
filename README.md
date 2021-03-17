@@ -4,6 +4,10 @@
 
 Welcome to my trivia code challenge! I hope you have fun and level-up your skills before your next big trivia night :)
 
+## Deployed Link
+
+https://trivia-train.herokuapp.com/
+
 ## Installation
 
 _note: to run this app on your code editor, you'll need Javascript, Node.js, and MongoDb installed (more database info below)_
@@ -36,7 +40,7 @@ this will start the server on port 3001
 #### in another terminal, cd client
 
 `npm start`
-this will start the client side on port 3000: `http://localhost:3000/`
+this will start the frontend on port 3000: `http://localhost:3000/`
 
 ### play the game!
 
@@ -46,8 +50,5 @@ _note: if you refresh the page this will generate a new game_
 
 A more fleshed out UX/UI! As a start, I aimed for simple and navigable.
 
-A script to seed the database.
+A script to seed the database and add more questions.
 
-##### This project was created by Olivia Kasmin
-
-https://www.oliviakasmin.com/

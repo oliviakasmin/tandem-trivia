@@ -36,8 +36,6 @@ const Round = props => {
     setShowQuestions(false)
   }
 
-  // need to add else statment saying you've run out of questions! maybe just put a toast to start
-  // or add another state alerting to the fact that you've finished questions and return home
   const handlePlayNext = event => {
     event.preventDefault()
     if (currentRound < rounds.length - 1) {
