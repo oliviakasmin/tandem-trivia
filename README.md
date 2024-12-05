@@ -4,10 +4,6 @@
 
 Welcome to my trivia code challenge! I hope you have fun and level-up your skills before your next big trivia night :)
 
-## Deployed Link
-
-https://trivia-train.herokuapp.com/
-
 ## Installation
 
 _note: to run this app on your code editor, you'll need Javascript, Node.js, and MongoDb installed (more database info below)_
